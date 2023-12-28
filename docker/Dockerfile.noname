@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-FROM postgres:15-alpine
+FROM postgres:16.1-alpine3.19
 
 RUN apk update && apk add --no-cache build-base flex bison perl postgresql15-dev $DOCKER_PG_LLVM_DEPS
 
@@ -31,7 +31,7 @@ WORKDIR /age
 RUN make && make install
 
 
-FROM postgres:15-alpine
+FROM postgres:16.1-alpine3.19
 
 COPY --from=0 /usr/local/lib/postgresql /usr/local/lib/postgresql
 COPY --from=0 /usr/local/share/postgresql /usr/local/share/postgresql
